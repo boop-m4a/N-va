@@ -2,62 +2,19 @@ local flux = require "libs.flux"
 local lovepatch = require "libs.lovepatch"
 --local Inky = require "libs.Inky.inky"
 
-_G.buttonPatches = _G.buttonPatches or {}
-_G.lastClickedButton = nil
-_G.buttonOffsets = _G.buttonOffsets or {}
+local button_h = 100
+local button_w = 608
 
-function button(img, x, y, padx, pady, text, varname, val)
-    
-    btn = {
-        image = img,
-        x = x, y = y, w = 608, h = 100,
-        padx = padx, pady = pady,
-        text = text
+local buttons = {}
+
+function newbtn(text, fn)
+    return {
+        text = text,
+        fn = fn
     }
-    
 end
 
-fucntion btndraw(target)
-    if checkMouseOverImage(target) and love.mouse.isDown(1) then
-
-        love.graphics.setColor(0.65, 0.65, 0.65)
-        btn.y= btn.y+10
-        love.graphics.draw(btn.image, btn.x, btn.y)
-        btn.y= btn.y-10
-        love.graphics.setColor(1, 1, 1)
-        _G[varname] = val
-
-    elseif checkMouseOverImage(target) then
-
-        love.graphics.setColor(0.85, 0.85, 0.85)
-        love.graphics.draw(target.image, target.x, target.y)
-        love.graphics.setColor(1, 1, 1)
-
-    else
-
-        love.graphics.setColor(1, 1, 1)
-        love.graphics.draw(target.image, target.x, target.y)
-    end
-    
-
-    if love.mouse.isDown(1) then
-        if varname and checkMouseOverImage(btn) then
-            if _G.lastClickedButton ~= varname then
-                _G[varname] = val
-                _G.lastClickedButton = varname                 
-            end
-        end
-    else
-        if varname and _G.lastClickedButton == varname then
-            _G.lastClickedButton = nil
-        end
-    end
-
-    love.graphics.print(target.text, target.x+target.padx, target.y-target.pady)
-    breathe(target)
-end
-
-function checkMouseOverImage(target)
+function hovering(target)
      local mx, my = love.mouse.getPosition()
     local winW, winH = love.graphics.getDimensions()
 
@@ -97,30 +54,42 @@ function love.resize(w, h)
 end
 
 function love.load()
-    init()
 
-    startb = love.graphics.newImage("assets/button.png")
-    button(startb, 0, 400, 20, -7, 12, 12, "Start", valal, 5)
+
+    table.insert(buttons, newbtn(
+        "Start Game",
+        function()
+            print("Starting Game...", 100, 400)
+        end))
+
+        table.insert(buttons, newbtn(
+        "Settings",
+        function()
+            print("Starting Settings Page...", 100, 500)
+        end))
+
+        table.insert(buttons, newbtn(
+        "Quit",
+        function()
+            love.event.quit(0)
+        end))
+
+    
+
+    logo()
 
     love.window.setMode(608, 1080, {
         love.window.setTitle("N+va"),
         resizable = false,
         fullscreen = true,
+        vsync = false,
     })
+    love.graphics.setDefaultFilter("nearest", "nearest")
 end
 
-function init()
-    love.window.setMode(0, 0, {
-        love.window.setTitle("N+va"),
-        resizable = false,
-        fullscreen = true,
-    })
-
-    love.graphics.setDefaultFilter("nearest", "nearest")
+function logo()
 
     love.resize(love.graphics.getDimensions())
-
-    page = 0
 
     startlogo = love.graphics.newImage("assets/logo.png")
     logo = {size = 1, y = 1080}
@@ -129,30 +98,21 @@ function init()
 
 end
 
-local valal = 6
 
-function menudraw()
+
+function logodraw()
     love.graphics.clear(0.1, 0.1, 0.17, 1)
     love.graphics.setColor(1, 1, 1)
-
+    love.graphics.draw(startlogo, 54, logo.y, 0, logo.size, logo.size)
     love.graphics.print("FPS: " .. fps, 10, 10)
-
-    buttondraw(btn)
-end
-
-
-
-function menupd(dt)
-    flux.update(dt)
-    fps = love.timer.getFPS()
 end
 
 local mx = love.mouse.getX()
 local my = love.mouse.getY()
 
 function love.update(dt)
-    menupd(dt)
     flux.update(dt)
+    fps = love.timer.getFPS()
 end
 
 function love.draw(dt)
@@ -168,9 +128,13 @@ function love.draw(dt)
 
     
 
-    menudraw()
+    logodraw()
 
-    --img, x, y, padx, pady, text, var, val
+    for(i, button in ipairs(buttons) do)
+        love.graphics
+    end
+
+    --img, x, y, padx, pady, text, varname, val
     
 
     love.graphics.pop()
