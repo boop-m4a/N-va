@@ -6,11 +6,13 @@ local MainMenu = {}
 
 function MainMenu:enter()
     self.logo = love.graphics.newImage("assets/logo.png")
+    button = love.graphics.newImage("assets/button.png")
+    b = suit.ImageButton(button, -308, 100, 608, 100)
 end
 
 function MainMenu:update(dt)
     suit.layout:reset(154, 100)
-    if suit.Button("Level Select", suit.layout:row(300, 100)).hit then
+    if b.hit then
         manager:enter(levelselect)
     end
 end
