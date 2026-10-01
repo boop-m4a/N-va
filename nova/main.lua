@@ -1,16 +1,15 @@
 local flux = require 'libs.flux'
 local manager = require 'manager'
 
-
     
 function love.load()
-    love.window.setMode(608, 1000, {
+    love.window.setMode(608, 1080, {
         love.graphics.setDefaultFilter("nearest", "nearest"),
         love.window.setTitle("Demo")
     })
-
-    boogaloo = love.graphics.newFont("assets/bogaloo.ttf")
-    love.graphics.setFont(boogaloo)
+    love.window.setFullscreen(true, "desktop")
+    vw, vh = 608, 1080
+    gameCanvas = love.graphics.newCanvas(vw, vh)
 
     manager:hook()
     manager:enter(require 'screens.mainmenu')
@@ -20,5 +19,4 @@ function love.update(dt)
 end
 
 function love.draw()
-    
 end

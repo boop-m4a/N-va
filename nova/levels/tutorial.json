@@ -6,6 +6,11 @@
     },
 
     "level": {
-
+        "BackgroundColor": "#FFFFF",
+        "objects": [
+            {"type": "block", "x": 0, "y": 0, "has_hitbox": false},
+            {"type": "block", "x": 0, "y": 2, "has_hitbox": true},
+            {"type": "star", "x": 4, "y": 4, "has_hitbox": true}
+        ]
     }
 }

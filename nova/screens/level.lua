@@ -1,5 +1,7 @@
 local manager = require 'manager'
 local json = require 'libs.json'
+local themit = require 'libs.themit'
+local suit    = require 'libs.suit'
 
 local CurrentLevel = {}
 
@@ -9,7 +11,7 @@ function CurrentLevel:enter()
 
     hits = 0
     misses = 0
-    local fullpath = "levels/" .. currentlevel
+    local fullpath = currentlevel
     local contents, size = love.filesystem.read(fullpath)
 
     if contents then
@@ -17,10 +19,17 @@ function CurrentLevel:enter()
     end
 end
 
+function CurrentLevel:update()
+    mousepos()
+end
+
 function CurrentLevel:draw()
-    love.graphics.clear(0.3, 0.3, 0.34)
-    --love.graphics.print(meta.metadata.Name, 10, 10)
-    --love.graphics.print(meta.metadata.Creator, 10, 60)
+    startframe()
+
+    love.graphics.clear(0.17, 0.17, 0.28)
+    suit.draw()
+
+    endframe()
 end
 
 return CurrentLevel
