@@ -7,7 +7,6 @@ local SettingsPage = {}
 
 local VolumeSlider = {
     value = 50,
-    min = 0,
     max = 100
 }
 
@@ -24,7 +23,8 @@ function SettingsPage:update()
 end
 
 function SettingsPage:draw()
-
+    startframe()
+    endframe()
 end
 
 return SettingsPage
