@@ -24,8 +24,7 @@ function SettingsPage:update()
 end
 
 function SettingsPage:draw()
-    endframe()
-    startframe()
+
 end
 
 return SettingsPage
