@@ -2,15 +2,34 @@
     "metadata": {
         "Name": "Tutorial",
         "Creator": "Glasser",
-        "Description": ["Tutorial Level"]
+        "Description": ["Tutorial Level"],
+
+        "BPM": 97,
+        "RowsPerBeat": 8,
+        "Offset": 0,
+        "Music": "music/tutorial.mp3"
     },
 
     "level": {
-        "BackgroundColor": "#FFFFF",
+        "BackgroundColor": "#2B2B47",
         "objects": [
             {"type": "block", "x": 0, "y": 0, "has_hitbox": false},
             {"type": "block", "x": 0, "y": 2, "has_hitbox": true},
-            {"type": "star", "x": 4, "y": 4, "has_hitbox": true}
+            {"type": "star", "x": 4, "y": 4, "has_hitbox": true},
+
+            {"type": "star", "x": 8,  "y": 8},
+            {"type": "star", "x": 12, "y": 12},
+            {"type": "star", "x": 8,  "y": 16},
+            {"type": "star", "x": 4,  "y": 20},
+
+            {"type": "block", "x": 0,  "y": 24, "w": 6, "h": 2, "has_hitbox": true},
+            {"type": "block", "x": 10, "y": 24, "w": 6, "h": 2, "has_hitbox": true},
+            {"type": "star", "x": 8, "y": 26},
+
+            {"type": "star", "x": 3,  "y": 32},
+            {"type": "star", "x": 6,  "y": 34},
+            {"type": "star", "x": 9,  "y": 36},
+            {"type": "star", "x": 12, "y": 38}
         ]
     }
 }
