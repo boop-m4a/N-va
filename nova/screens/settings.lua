@@ -27,3 +27,5 @@ function SettingsPage:draw()
     endframe()
     startframe()
 end
+
+return SettingsPage
