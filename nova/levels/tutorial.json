@@ -5,7 +5,7 @@
         "Description": ["Tutorial Level"],
 
         "BPM": 97,
-        "RowsPerBeat": 8,
+        "RowsPerBeat": 4,
         "Offset": 0,
         "Music": "music/tutorial.mp3"
     },

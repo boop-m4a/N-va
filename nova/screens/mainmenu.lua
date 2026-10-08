@@ -3,7 +3,7 @@ local manager = require 'manager'
 local levelselect = require 'screens.levelselect'
 local themit = require 'libs.themit'
 local f = require 'libs.trans'
-
+local settings = require 'screens.settings'
 
 local MainMenu = {}
 
@@ -28,7 +28,7 @@ function MainMenu:update(dt)
     end
 
     if suit.Button("Settings", 0, 665, 508, 100).hit then
-        
+        manager:enter(settings)
     end
 
     if suit.Button("Quit", 0, 780, 508, 100).hit then

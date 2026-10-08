@@ -40,6 +40,10 @@ local currentPage = 1
 local itemsPerPage = 9
 
 function LevelSelect:update()
+    if love.keyboard.isDown("escape") then
+            manager:enter(require 'screens.mainmenu')
+    end
+    
     mousepos()
 
     suit.layout:reset(0, 40)
@@ -77,6 +81,7 @@ function LevelSelect:update()
                 currentPage = currentPage + 1
             end
         end
+
 end
 
 function LevelSelect:draw()
